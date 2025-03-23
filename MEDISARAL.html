@@ -1,0 +1,380 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Medisaral
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-teal-600 text-white p-4 flex justify-between items-center">
+   <div class="flex items-center space-x-4">
+    <button class="bg-white text-teal-600 px-4 py-2 rounded hidden" id="back-button" onclick="goBack()">
+     Back
+    </button>
+    <div class="text-lg font-bold">
+     MEDISARAL
+    </div>
+   </div>
+   <div class="flex space-x-4">
+    <button class="bg-white text-teal-600 px-4 py-2 rounded" onclick="openAddressModal()">
+     Add Your Address
+    </button>
+    <button class="bg-white text-teal-600 px-4 py-2 rounded">
+     LOGIN
+    </button>
+    <button class="bg-white text-teal-600 px-4 py-2 rounded" onclick="openAboutModal()">
+     ABOUT
+    </button>
+    <button class="bg-white text-teal-600 px-4 py-2 rounded" onclick="openContactModal()">
+     CONTACT US
+    </button>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="p-8 text-lg">
+   <!-- Desktop 1 -->
+<section class="section active bg-white p-6 rounded shadow-md mb-6" id="desktop-1">
+    <div class="flex justify-between items-start">
+      <!-- Text Content -->
+      <div class="w-1/2 pr-8">
+        <h2 class="font-bold mb-8" style="font-size: 54px; line-height: 1.5;">
+          From structured search results
+          <br/>
+          <span class="ml-8">
+            to
+          </span>
+          <br/>
+          <span class="ml-8">
+            structured DNA.
+          </span>
+          <br/>
+          <span class="ml-8 block mt-4">
+            WE ARE HERE!!
+          </span>
+        </h2>
+      </div>
+  
+      <!-- Image Section -->
+      <div class="w-1/2 pl-8 flex justify-center items-start">
+        <img src="https://s3-alpha-sig.figma.com/img/7cdb/94f2/ed6bf70431e29382cec49302d6ff2cc4?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CMUtmx7a5AL1nmTJLniX3I8Bqbwx9savR~f7Pb~gaJc3n4iKWTT8Zj0XYBvgDIAsTW5AtXlfvM0NjnJgRro-etEZ4xNnZH-yjsJLBYLlvr-V8BeOd3PaFmUkFBXVG0lIrbwxVmxGDlfIF1DjyaxHB7GPCDmkLPMItQrCwEmhXgtUS4nKKXLqTF9i5JjHQSbdF~gjj92jEVhwtY9YTXIJqEIbbHv89hkJtpyUHul4m-124ciJyp36YOvE9jaKKr-A44qOcl2kqZeUirPzKCnUNPd704t68DPNKtbZtKLr-QdNMc5jY92e9qFAtZYXu--EbrrYothF~htjQ6ufFLgFJA__" 
+             alt="Medical research illustration"
+             class="rounded-lg shadow-lg border-4 border-teal-100"
+             style="width: 400px; height: 400px; object-fit: cover;">
+      </div>
+    </div>
+  
+    <!-- Email Input Section -->
+    <div class="flex flex-col items-center mt-12">
+      <label class="mb-2" for="email">
+        Enter your Email ID
+      </label>
+      <div class="flex items-center">
+        <input class="border p-2 rounded-l" id="email" placeholder="Enter your Email ID" type="email"/>
+        <button class="bg-teal-600 text-white px-4 py-2 rounded-r" onclick="validateEmailAndNavigate()">
+          SIGN UP
+        </button>
+      </div>
+      <p class="mt-2">
+        We will send an OTP for verification
+      </p>
+    </div>
+  </section>
+   <!-- Desktop 2 -->
+<section class="section bg-white p-6 rounded shadow-md mb-6 border-t-8 border-teal-600" id="desktop-2">
+    <div class="flex items-center mb-4">
+      <input class="border p-2 rounded-l w-1/4" id="location" placeholder="Kolkata" type="text"/>
+      <input class="border p-2 w-1/2" id="test" placeholder="Search for Tests(MRI etc)" type="text"/>
+      <button class="bg-teal-600 text-white px-4 py-2 rounded-r" onclick="validateAndNavigate()">
+        SEARCH
+      </button>
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="w-1/2">
+        <img alt="Medical booking illustration" 
+             class="w-full" 
+             src="https://s3-alpha-sig.figma.com/img/1bc7/a565/8da85f26d354b1af1cf2cf6a45705d94?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iGWNqDYvhk6eveFi1U~mZZv1pI6enuHwPu8zzk80-krG98KYmRioZ8trbiGE5~sskIErmTmv7neTCOJvnSIhCUdEu8ccFBWWoPm8xPthW1syht4xIbUgx638~QfJrnr~G~woypX39CI5eBMsJrI2QWPAw9gmJ8m28U5vi85-RNCsKAlDSOv~-~MlTmGSAIom-MRDIdvOU0mAW~xeYFhFTRAbj~CIUSvKSPvbBno-KRmM-3Uk7O64UJDmSeAbmGcwriYptv5oX6uroHI24xjVdxXlSpceQV9s6uhQGdxysg4Ly81gbQJet80yYom6ahrwZvuS~-JtDU8DPrN~lRvFYw__" 
+             style="width: 300px; height: 200px; object-fit: cover;">
+      </div>
+      <div class="w-1/2 text-center">
+        <h2 class="text-xl font-bold mb-4">
+          Book Test From The Comfort Of Your Home
+        </h2>
+        <div class="flex justify-around">
+          <div class="text-center">
+            <i class="fas fa-shield-alt text-2xl mb-2"></i>
+            <p>Safe and Hygienic</p>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-tags text-2xl mb-2"></i>
+            <p>Compare prices easily</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <!-- Desktop 3 -->
+   <section class="section bg-white p-6 rounded shadow-md mb-6 border-t-8 border-teal-600" id="desktop-3">
+    <h2 class="text-xl font-bold mb-4">
+     CENTERS
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+     <div class="border p-4 rounded cursor-pointer" onclick="selectCenter('XYZ Medical Center', 1500)">
+      <h3 class="font-bold">
+       XYZ Medical Center
+      </h3>
+      <p>
+       Distance: 4km
+      </p>
+      <p>
+       Price: ₹1500
+      </p>
+      <p>
+       Review: 4.5/5
+      </p>
+     </div>
+     <div class="border p-4 rounded cursor-pointer" onclick="selectCenter('ABC Medical Center', 1800)">
+      <h3 class="font-bold">
+       ABC Medical Center
+      </h3>
+      <p>
+       Distance: 10km
+      </p>
+      <p>
+       Price: ₹1800
+      </p>
+      <p>
+       Review: 4.0/5
+      </p>
+     </div>
+     <div class="border p-4 rounded cursor-pointer" onclick="selectCenter('City Hospital', 1200)">
+      <h3 class="font-bold">
+       City Hospital
+      </h3>
+      <p>
+       Distance: 2km
+      </p>
+      <p>
+       Price: ₹1200
+      </p>
+      <p>
+       Review: 3.5/5
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Desktop 4 -->
+   <section class="section bg-white p-6 rounded shadow-md mb-6 border-t-8 border-teal-600" id="desktop-4">
+    <h2 class="text-xl font-bold mb-4">
+     Begin Your Journey!
+    </h2>
+    <p class="mb-4">
+     Book Your Appointment Easily
+    </p>
+    <div class="w-full">
+     <div class="mb-4">
+      <label class="block mb-2" for="date">
+       Select Date
+      </label>
+      <input class="border p-2 w-full" id="date" onchange="updateDate()" type="date"/>
+     </div>
+     <div class="border p-4 rounded mb-4">
+      <h3 class="font-bold">
+       Bill Summary
+      </h3>
+      <p id="selected-center">
+       Selected center: XYZ Medical Center
+      </p>
+      <p id="selected-date">
+       Date:
+      </p>
+      <p>
+       MRI
+      </p>
+      <p id="amount-to-be-paid">
+       To be paid: ₹1500
+      </p>
+     </div>
+     <button class="bg-teal-600 text-white px-4 py-2 rounded w-full">
+      BOOK NOW/LATER
+     </button>
+    </div>
+   </section>
+
+  </main>
+  <!-- Address Modal -->
+  <div class="modal" id="addressModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal('addressModal')">
+     ×
+    </span>
+    <h2 class="text-xl font-bold mb-4">
+     Enter Your Address
+    </h2>
+    <input class="border p-2 w-full mb-4" placeholder="Enter your address" type="text"/>
+    <button class="bg-teal-600 text-white px-4 py-2 rounded w-full" onclick="closeModal('addressModal')">
+     Submit
+    </button>
+   </div>
+  </div>
+  <!-- About Modal -->
+  <div class="modal" id="aboutModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal('aboutModal')">
+     ×
+    </span>
+    <h2 class="text-xl font-bold mb-4">
+     MEDISARAL
+    </h2>
+    <p>
+     Your health is your biggest asset and should not be a luxury.
+    </p>
+    <p>
+     Swasth rahega Bharat tabhi toh badega Bharat
+    </p>
+    <h2 class="text-xl font-bold mt-4">
+     Statistics
+    </h2>
+    <ul class="list-disc ml-6">
+     <li>
+      65% of patients rely on word of mouth recommendation for affordable healthcare option
+     </li>
+     <li>
+      Less than 5% of hospitals in India provide real-time online appointment booking and cost comparison
+     </li>
+     <li>
+      1 in 3 people have delayed or avoided medical treatment because they couldn't find an affordable option
+     </li>
+    </ul>
+    <p class="mt-4">
+     So we provide a platform to aggregate and compare affordable medical centers to significantly reduce financial burdens and improve access to timely healthcare.
+    </p>
+   </div>
+  </div>
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal('contactModal')">
+     ×
+    </span>
+    <h2 class="text-xl font-bold mb-4">
+     Contact Us
+    </h2>
+    <p>
+     MedisaralLife@gmail.com
+    </p>
+    <p>
+     Phone number: 0341-255256
+    </p>
+   </div>
+  </div>
+  <script>
+   function navigateTo(sectionId) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+      updateBackButton(sectionId);
+    }
+
+    function selectCenter(centerName, amount) {
+      document.getElementById('selected-center').innerText = `Selected center: ${centerName}`;
+      document.getElementById('amount-to-be-paid').innerText = `To be paid: ₹${amount}`;
+      navigateTo('desktop-4');
+    }
+
+    function openAddressModal() {
+      document.getElementById('addressModal').style.display = 'block';
+    }
+
+    function openAboutModal() {
+      document.getElementById('aboutModal').style.display = 'block';
+    }
+
+    function openContactModal() {
+      document.getElementById('contactModal').style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function updateBackButton(sectionId) {
+      const backButton = document.getElementById('back-button');
+      if (sectionId === 'desktop-1') {
+        backButton.classList.add('hidden');
+      } else {
+        backButton.classList.remove('hidden');
+        backButton.setAttribute('onclick', `navigateTo('${getPreviousSection(sectionId)}')`);
+      }
+    }
+
+    function getPreviousSection(currentSection) {
+      const sections = ['desktop-1', 'desktop-2', 'desktop-3', 'desktop-4'];
+      const currentIndex = sections.indexOf(currentSection);
+      return sections[currentIndex - 1];
+    }
+
+    function goBack() {
+      const currentSection = document.querySelector('.section.active').id;
+      const previousSection = getPreviousSection(currentSection);
+      navigateTo(previousSection);
+    }
+
+    function updateDate() {
+      const selectedDate = document.getElementById('date').value;
+      document.getElementById('selected-date').innerText = `Date: ${selectedDate}`;
+    }
+
+    function validateAndNavigate() {
+      const location = document.getElementById('location').value;
+      const test = document.getElementById('test').value;
+      if (location && test) {
+        navigateTo('desktop-3');
+      } else {
+        alert('Please fill in both the location and test fields.');
+      }
+    }
+
+    function validateEmailAndNavigate() {
+      const email = document.getElementById('email').value;
+      if (email) {
+        navigateTo('desktop-2');
+      } else {
+        alert('Please enter your Email ID.');
+      }
+    }
+  </script>
+ </body>
+</html>
